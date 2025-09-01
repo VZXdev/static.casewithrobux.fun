@@ -1,6 +1,6 @@
 const CLIENT_ID = '6829064744000489573';
 const REDIRECT_URI = 'http://localhost:3000/auth/callback';
-const ROBLOX_AUTH_URL = `http://localhost:3000/api/auth`;
+const ROBLOX_AUTH_URL = `https://roblox-case.loca.lt/api/auth`;
 let currentUser = null;
 let tickerInterval;
 const recentWins = [];
