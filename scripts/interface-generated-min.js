@@ -1,6 +1,6 @@
 const CLIENT_ID = '6829064744000489573';
-const REDIRECT_URI = 'https://roblox-case.loca.lt/auth/callback';
-const ROBLOX_AUTH_URL = `https://roblox-case.loca.lt/api/auth`;
+const REDIRECT_URI = 'https://casewithrobux.fun/auth/callback';
+const ROBLOX_AUTH_URL = `https://casewithrobux.fun/api/auth`;
 let currentUser = null;
 let tickerInterval;
 const recentWins = [];
@@ -96,8 +96,7 @@ async function showRobuxPaymentModal() {
         const modal = document.createElement('div');
         modal.innerHTML = modalHTML;
         document.body.appendChild(modal);
-        
-        // Закрытие по клику вне модального окна
+
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.remove();
@@ -117,7 +116,7 @@ async function showRobuxPaymentModal() {
             });
         });
         
-        // Предотвращение скролла страницы под модальным окном на мобильных устройствах
+
         document.body.style.overflow = 'hidden';
         modal.addEventListener('remove', () => {
             document.body.style.overflow = '';
@@ -282,10 +281,10 @@ function showPaymentModal(paymentData) {
     modal.innerHTML = modalHTML;
     document.body.appendChild(modal);
     
-    // Store payment data for later use
+
     modal.paymentData = paymentData;
     
-    // Закрытие по клику вне модального окна
+
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             stopPaymentMonitoring();
@@ -293,13 +292,13 @@ function showPaymentModal(paymentData) {
         }
     });
     
-    // Start payment monitoring
+
     startPaymentMonitoring(paymentData.payment_id);
     
-    // Start countdown timer
-    startPaymentTimer(15 * 60); // 15 minutes
+
+    startPaymentTimer(15 * 60);
     
-    // Event listeners
+
     modal.querySelector('#close-payment-modal').addEventListener('click', () => {
         stopPaymentMonitoring();
         modal.remove();
@@ -309,7 +308,7 @@ function showPaymentModal(paymentData) {
         verifyPayment(paymentData.gamepass_id);
     });
     
-    // Debug check button
+
     modal.querySelector('#debug-check').addEventListener('click', async () => {
         try {
             const response = await fetch('/api/debug/check-gamepass', {
@@ -342,7 +341,7 @@ function showPaymentModal(paymentData) {
             
             if (result.purchased) {
                 showNotification('success', 'Purchase detected! Processing...');
-                // The monitoring system should pick this up soon
+
             }
             
         } catch (error) {
@@ -351,7 +350,7 @@ function showPaymentModal(paymentData) {
         }
     });
     
-    // Предотвращение скролла страницы под модальным окном на мобильных устройствах
+
     document.body.style.overflow = 'hidden';
     modal.addEventListener('remove', () => {
         document.body.style.overflow = '';
@@ -380,7 +379,7 @@ function startPaymentTimer(seconds) {
 }
 
 function startPaymentMonitoring(paymentId) {
-    console.log('Starting payment monitoring for:', paymentId);
+
     
     paymentCheckInterval = setInterval(async () => {
         try {
@@ -390,14 +389,13 @@ function startPaymentMonitoring(paymentId) {
             
             if (response.ok) {
                 const status = await response.json();
-                
-                console.log('Payment status check:', status);
+
                 
                 if (status.status === 'completed') {
                     stopPaymentMonitoring();
                     document.getElementById('payment-modal')?.remove();
                     showNotification('success', `Payment successful! ${status.amount} tokens added to your account`);
-                    await checkAuth(); // Refresh user data
+                    await checkAuth();
                 } else if (status.status === 'failed') {
                     stopPaymentMonitoring();
                     document.getElementById('payment-modal')?.remove();
@@ -407,14 +405,14 @@ function startPaymentMonitoring(paymentId) {
         } catch (error) {
             console.error('Payment monitoring error:', error);
         }
-    }, 5000); // Check every 5 seconds
+    }, 5000);
 }
 
 function stopPaymentMonitoring() {
     if (paymentCheckInterval) {
         clearInterval(paymentCheckInterval);
         paymentCheckInterval = null;
-        console.log('Stopped payment monitoring');
+
     }
 }
 
@@ -547,19 +545,6 @@ function setupEventListeners() {
     });
 }
 
-const prizeIcons = {
-    10: 'https://raw.githubusercontent.com/VZXdev/code-license/refs/heads/main/icons8-%D1%80%D0%BE%D0%B1%D1%83%D0%BA%D1%81-50.png',
-    50: 'https://raw.githubusercontent.com/VZXdev/code-license/refs/heads/main/icons8-%D1%80%D0%BE%D0%B1%D1%83%D0%BA%D1%81-50.png',
-    100: 'https://tr.rbxcdn.com/180DAY-537c7ff6cdaf34946aa8b00a778a0be0/420/420/FaceAccessory/Webp/noFilter',
-    300: 'https://tr.rbxcdn.com/180DAY-c21c0525207f1c19c20f480907db6788/420/420/Hat/Webp/noFilter',
-    500: 'https://tr.rbxcdn.com/180DAY-ac668a162fb556d2cabe51448912797b/420/420/Hat/Webp/noFilter',
-    900: 'https://tr.rbxcdn.com/180DAY-fc4aca60c52b86949eee58ffe830b7ab/420/420/BackAccessory/Webp/noFilter',
-    1200: 'https://tr.rbxcdn.com/180DAY-9196d284b7faa7965fbd0e02deb5bdfd/420/420/Hat/Webp/noFilter',
-    1500: 'https://tr.rbxcdn.com/180DAY-ffbfb5539f5c723ad9d1d265ac30ddd1/420/420/Hat/Webp/noFilter',
-    1666: 'https://tr.rbxcdn.com/180DAY-3091b0fb74428ffbee4418de5d3b4bb1/420/420/FaceAccessory/Webp/noFilter',
-    2000: 'https://tr.rbxcdn.com/180DAY-b54d9ce6733af5b034729000193b758c/420/420/BackAccessory/Webp/noFilter',
-    3000: 'https://tr.rbxcdn.com/180DAY-11b0c570276016ed3fdfa9236e93fb3b/420/420/Hat/Webp/noFilter'
-};
 
 function getRandomIcon() {
     const iconKeys = Object.keys(prizeIcons);
@@ -679,7 +664,7 @@ async function loadInventory() {
                         const result = await response.json();
                         if (response.ok) {
                             showNotification('success', result.message || 'Robux sent!');
-                            loadInventory(); // Перезагружаем инвентарь
+                            loadInventory(); 
                         } else {
                             showNotification('error', result.message || 'Withdrawal failed');
                             btn.disabled = false;
@@ -748,13 +733,19 @@ async function openCase(caseId) {
         showNotification('warning', 'Please login first');
         return;
     }
-    
+
     try {
+
+        const caseInfoRes = await fetch(`/api/case-info/${caseId}`);
+        if (!caseInfoRes.ok) throw new Error('Failed to get case info');
+        const caseInfo = await caseInfoRes.json();
+        
+
+
+
         const response = await fetch('/api/open-case', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({ caseId: Number(caseId) })
         });
@@ -766,8 +757,9 @@ async function openCase(caseId) {
         }
 
         const result = await response.json();
-        
-        // Update balance even if item is null
+
+
+
         if (result.newBalance !== undefined) {
             currentUser.balance = result.newBalance;
             updateBalanceDisplay();
@@ -780,24 +772,76 @@ async function openCase(caseId) {
             return;
         }
 
-        // Create default item if result.item is null
-        const item = result.item || {
-            icon: 'https://free-png.ru/wp-content/uploads/2022/01/free-png.ru-388.png',
-            label: 'Nothing',
-            value: 0
-        };
 
         const trackLength = 70;
         const centerIndex = Math.floor(trackLength / 2);
         const prizeWidth = 176;
-        const viewportCenter = window.innerWidth / 2;
-        const offset = -((centerIndex * prizeWidth) - viewportCenter + (prizeWidth / 2));
+
+        const winItem = result.item || {
+            type: 'nothing',
+            value: 0,
+            icon_url: '',
+            label: 'Nothing'
+        };
+
+
+
+
+        const prizes = Array(trackLength).fill(null).map((_, i) => {
+            if (i === centerIndex) {
+                return winItem; 
+            }
+            
+
+            const randomItem = caseInfo.items[Math.floor(Math.random() * caseInfo.items.length)];
+
+
+   
+            let iconUrl = '';
+            let itemLabel = '';
+            
+            if (randomItem.icon_url) {
+
+                iconUrl = randomItem.icon_url;
+                itemLabel = randomItem.item_name || `${randomItem.robux_amount} Robux`;
+            } else if (randomItem.item && randomItem.item.icon_url) {
+
+                iconUrl = randomItem.item.icon_url;
+                itemLabel = randomItem.item.item_name || `${randomItem.item.robux_amount} Robux`;
+            } else if (randomItem.robux_amount) {
+
+                iconUrl = ''; 
+                itemLabel = `${randomItem.robux_amount} Robux`;
+            }
+            
+            return {
+                type: randomItem.item_type || (randomItem.robux_amount ? 'robux' : 'item'),
+                value: randomItem.robux_amount || 0,
+                icon_url: iconUrl,
+                label: itemLabel || 'Unknown Item'
+            };
+        });
+
 
         prizeContent.innerHTML = `
             <div class="case-battle-track-container" style="position:relative; width:100%; max-width:900px; margin:0 auto 32px auto; height:180px; overflow:hidden;">
-                <div class="case-battle-arrow" style="transform:translateX(-50%) rotate(180deg);"></div>
+                <div class="case-battle-arrow" style="position:absolute; left:50%; top:0; width:20px; height:20px; background:#f9c74f; clip-path:polygon(50% 0%, 0% 100%, 100% 100%); z-index:10; transform:translateX(-50%) rotate(180deg);"></div>
                 <div class="case-battle-track" id="caseBattleTrack" style="display:flex;align-items:center;height:180px;transition:transform 4s cubic-bezier(0.22,0.61,0.36,1);will-change:transform;">
-                    ${Array(trackLength).fill(0).map((_, i) => `
+                    ${prizes.map((prize, i) => {
+
+                        let iconHtml = '';
+                        if (prize.icon_url && prize.icon_url !== '') {
+
+                            iconHtml = `<img src="${prize.icon_url}" style="width:64px;height:64px;object-fit:contain;">`;
+                        } else if (prize.type === 'robux') {
+
+                            iconHtml = '<i class="fas fa-coins" style="font-size:48px;color:#f9c74f;"></i>';
+                        } else {
+
+                            iconHtml = '<i class="fas fa-times" style="font-size:48px;color:#e63946;"></i>';
+                        }
+                        
+                        return `
                         <div class="case-battle-prize ${i === centerIndex ? 'winner' : ''}" style="
                             width:160px;
                             height:160px;
@@ -815,11 +859,16 @@ async function openCase(caseId) {
                             transition:border-color 0.3s;
                             border-radius:18px;
                             margin:0 8px;
+                            border: ${i === centerIndex ? '3px solid transparent' : 'none'};
                         ">
-                            <img src="${item.icon}" class="case-battle-prize-icon" style="width:64px; height:64px; margin-bottom:8px;" onerror="this.src='https://placehold.co/100'">
-                            <div class="case-battle-prize-label" style="font-size:1.3rem;font-weight:600;color:#f9c74f;margin-top:8px;">${item.label}</div>
+                            <div class="prize-icon" style="width:64px;height:64px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;">
+                                ${iconHtml}
+                            </div>
+                            <div class="prize-label" style="font-size:1.3rem;font-weight:600;color:#f9c74f;margin-top:8px;">
+                                ${prize.label}
+                            </div>
                         </div>
-                    `).join('')}
+                    `}).join('')}
                 </div>
             </div>
             <h3 class="text-xl font-bold mb-2">Opening Case...</h3>
@@ -831,7 +880,16 @@ async function openCase(caseId) {
         const track = document.getElementById('caseBattleTrack');
         if (!track) return;
 
+
         setTimeout(() => {
+            const trackWidth = track.scrollWidth;
+            const containerWidth = track.parentElement.offsetWidth;
+            
+
+            const winItemPosition = centerIndex * prizeWidth;
+            const offset = (containerWidth / 2) - (prizeWidth / 2) - winItemPosition;
+
+
             track.style.transform = `translateX(${offset}px)`;
 
             setTimeout(() => {
@@ -841,30 +899,46 @@ async function openCase(caseId) {
                     prizeElems[centerIndex].style.boxShadow = '0 0 40px #f9c74f88';
                 }
 
+
                 setTimeout(() => {
+
+                    let winIconHtml = '';
+                    if (winItem.icon_url && winItem.icon_url !== '') {
+                        winIconHtml = `<img src="${winItem.icon_url}" style="width:96px;height:96px;object-fit:contain;">`;
+                    } else if (winItem.type === 'robux') {
+                        winIconHtml = '<i class="fas fa-coins" style="font-size:72px;color:#f9c74f;"></i>';
+                    } else {
+                        winIconHtml = '<i class="fas fa-times" style="font-size:72px;color:#e63946;"></i>';
+                    }
+
                     prizeContent.innerHTML = `
                         <div class="prize-item prize-won" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
-                            <div style="display:flex;align-items:center;justify-content:center;width:100%;height:80px;">
-                                <img src="${item.icon}" class="prize-icon" style="width:64px; height:64px;" onerror="this.src='https://placehold.co/100'">
+                            <div style="font-size: 3rem; margin-bottom: 16px;">
+                                ${winIconHtml}
                             </div>
-                            <div class="prize-amount" style="font-size:2rem;font-weight:700;margin-top:12px;">+${item.value}</div>
-                            <h3 class="prize-name" style="font-size:1.3rem;font-weight:600;margin-top:8px;">${item.label}</h3>
-                            <div class="mt-6 text-lg" style="margin-top:18px;">
-                                ${item.value > 0 ? 'Congratulations! You won!' : 'Better luck next time!'}
+                            <div class="prize-amount" style="font-size:2rem;font-weight:700;margin-top:12px;color:${winItem.value > 0 ? '#90e0ef' : '#e63946'}">
+                                ${winItem.value > 0 ? `+${winItem.value}` : '0'}
+                            </div>
+                            <h3 class="prize-name" style="font-size:1.3rem;font-weight:600;margin-top:8px;color:#f9c74f;">
+                                ${winItem.label}
+                            </h3>
+                            <div class="mt-6 text-lg" style="margin-top:18px;color:${winItem.value > 0 ? '#90e0ef' : '#e63946'}">
+                                ${winItem.value > 0 ? 'Congratulations! You won!' : 'Better luck next time!'}
                             </div>
                         </div>
                     `;
 
-                    if (item.value > 0) {
+                    if (winItem.value > 0) {
                         window.dispatchEvent(new CustomEvent('prize-won', {
-                            detail: { amount: item.value }
+                            detail: { amount: winItem.value }
                         }));
                     }
 
                     loadInventory();
                 }, 1200);
             }, 3700);
-        }, 300);
+        }, 50);
+
     } catch (error) {
         console.error('Error opening case:', error);
         showNotification('error', 'Failed to open case');
@@ -877,16 +951,15 @@ function initializeSettings() {
     
     if (!settingsBtn || !settingsModal || !closeSettings) return;
 
-    // Load saved settings
+
     const savedTheme = localStorage.getItem('theme') || 'cosmos';
     const savedLang = localStorage.getItem('lang') || 'en';
     
-    // Apply saved settings
+
     document.body.setAttribute('data-theme', savedTheme);
     document.documentElement.lang = savedLang;
     updateLanguage(savedLang);
-    
-    // Mark active buttons
+
     document.querySelectorAll('.theme-btn').forEach(btn => {
         if (btn.dataset.theme === savedTheme) {
             btn.classList.add('active');
@@ -916,7 +989,7 @@ function initializeSettings() {
         });
     });
     
-    // Modal controls
+
     settingsBtn.addEventListener('click', () => {
         settingsModal.classList.remove('hidden');
     });
@@ -925,7 +998,7 @@ function initializeSettings() {
         settingsModal.classList.add('hidden');
     });
     
-    // Close modal when clicking outside
+
     settingsModal.addEventListener('click', (e) => {
         if (e.target === settingsModal) {
             settingsModal.classList.add('hidden');
@@ -933,7 +1006,7 @@ function initializeSettings() {
     });
 }
 
-// В файле u2uwl2jamdinterface.js
+
 async function loadCases() {
     try {
         const response = await fetch('/api/cases');
@@ -1017,13 +1090,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWinningTicker();
     });
     
-    // Clean up payment monitoring on page unload
+
     window.addEventListener('beforeunload', () => {
         stopPaymentMonitoring();
     });
     
-    // Add console logging for debugging
-    console.log('Interface initialized with unique gamepass system');
+
+
     const savedLang = localStorage.getItem('lang') || 'en';
     document.documentElement.lang = savedLang;
     updateLanguage(savedLang);
