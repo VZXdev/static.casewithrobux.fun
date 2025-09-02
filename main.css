@@ -577,3 +577,91 @@
                 margin-right: 0;
             }
         }
+       @media (max-width: 768px) {
+            .tab-text {
+                display: none;
+            }
+            
+            .tab-btn {
+                padding: 0.75rem !important;
+                min-width: auto !important;
+                justify-content: center;
+            }
+            
+            .tab-btn i {
+                margin-right: 0 !important;
+                font-size: 1.2rem;
+            }
+            
+            #topup-btn {
+                padding: 0.75rem !important;
+                min-width: auto !important;
+            }
+            
+            #topup-btn span {
+                display: none;
+            }
+            
+            #topup-btn i {
+                margin-right: 0 !important;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .cases-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+            
+            .user-info-container {
+                padding: 0.5rem;
+            }
+            
+            .username {
+                max-width: 80px;
+                font-size: 0.8rem;
+            }
+            
+            .balance {
+                font-size: 0.8rem;
+            }
+            
+            .logout-btn {
+                padding: 0.5rem;
+            }
+            
+            .logout-btn span {
+                display: none;
+            }
+            
+            header .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.2rem !important;
+            }
+            
+            .glass-effect.p-2 {
+                padding: 0.5rem !important;
+            }
+            
+            .btn-primary {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem;
+            }
+            
+            footer {
+                padding: 1rem !important;
+                font-size: 0.75rem;
+            }
+            
+            footer .flex {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
