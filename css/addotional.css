@@ -1,4 +1,4 @@
-* {
+        * {
             font-family: 'Montserrat', sans-serif;
         }
         
@@ -150,13 +150,16 @@
             to { opacity: 0; }
         }
         
+        .prize-reveal {
+            animation: zoomIn 0.5s ease;
+        }
         
         @keyframes zoomIn {
             from { transform: scale(0.5); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
         
-
+        /* Адаптивные стили */
         @media (max-width: 640px) {
             .hide-text-on-mobile span:not(.keep-on-mobile) {
                 display: none !important;
@@ -210,6 +213,7 @@
             }
         }
         
+        /* Кастомный скроллбар */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
