@@ -10,7 +10,7 @@ body {
         radial-gradient(circle at 50% 80%, rgba(123, 44, 191, 0.1) 0%, transparent 20%);
 }
 
-/* КРАСИВАЯ РАЗНОЦВЕТНАЯ ОБВОДКА ДЛЯ РУЛЕТКИ */
+
 .roulette-border {
     position: relative;
     border-radius: 18px;
