@@ -463,11 +463,6 @@
         .prize-item {
             animation: float 3s ease-in-out infinite;
         }
-
-        .prize-won {
-            animation: pulse 1s ease infinite;
-        }
-
         .prize-amount {
             font-size: 3rem;
             font-weight: 800;
