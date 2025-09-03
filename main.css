@@ -493,10 +493,6 @@ button:hover {
     to { opacity: 1; }
 }
 
-.prize-item {
-    animation: float 3s ease-in-out infinite;
-}
-
 .prize-amount {
     font-size: 3rem;
     font-weight: 800;
