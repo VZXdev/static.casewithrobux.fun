@@ -10,7 +10,3 @@
 #recent-wins-ticker {
     overflow: hidden;
 }
-
-.recent-win-item {
-    flex-shrink: 0;
-}
