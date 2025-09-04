@@ -1,6 +1,9 @@
 body {
     font-style: normal;
     background: #0f0f1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #f8fafc;
     min-height: 100vh;
     overflow-x: hidden;
