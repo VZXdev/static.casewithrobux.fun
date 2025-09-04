@@ -1,34 +1,15 @@
-.withdrawal-modal {
-    animation: modalFadeIn 0.3s ease-out;
-}
-
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.instruction-step {
-    transition: all 0.3s ease;
-}
-
-.instruction-step:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(157, 78, 221, 0.15);
-}
-
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
-    .withdrawal-modal .grid {
-        grid-template-columns: 1fr !important;
+    #withdraw-info-modal .glass-effect {
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .withdrawal-modal img {
-        max-height: 150px;
+    #withdraw-info-btn {
+        background: linear-gradient(45deg, #4a4a82, #9d4edd);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
-}
+    
+    #withdraw-info-btn:hover {
+        background: linear-gradient(45deg, #5a5a92, #7b2cbf);
+        transform: translateY(-2px);
+    }
