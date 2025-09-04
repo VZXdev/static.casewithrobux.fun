@@ -1,1 +1,37 @@
-
+@keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    @keyframes load {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
+    
+    .prize-spinner {
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    .prize-result {
+        animation: slideUp 0.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { 
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .close-prize-btn:hover {
+        background: #7b2cbf !important;
+    }
