@@ -23,3 +23,23 @@
 .recent-win-item:hover img {
     box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
 }
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 15s linear infinite;
+}
+
+#recent-wins-ticker {
+    overflow: hidden;
+}
+
+.recent-win-item {
+    flex-shrink: 0;
+}
