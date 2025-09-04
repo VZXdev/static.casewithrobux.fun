@@ -1,9 +1,6 @@
 body {
     font-style: normal;
     background: #0f0f1a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: #f8fafc;
     min-height: 100vh;
     overflow-x: hidden;
@@ -153,16 +150,6 @@ body {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
 }
-
-.nebula-bg {
-        position: absolute;
-        width: 120%;
-        height: 120%;
-        background: radial-gradient(circle at center, rgba(157, 78, 221, 0.15) 0%, rgba(15, 15, 26, 0) 70%);
-        animation: diagonalMove 30s linear infinite;
-        top: -10%;
-        left: -10%;
-    }
 
 .case-battle-track-container {
     position: relative;
