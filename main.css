@@ -10,17 +10,27 @@ body {
         radial-gradient(circle at 50% 80%, rgba(123, 44, 191, 0.1) 0%, transparent 20%);
 }
 
-.moving-bg {
-    background-size: 300% 300%;
-    animation: seamlessMove 20s linear infinite;
+.moving-seamless {
+    background-size: cover;
+    animation: seamlessMove 40s linear infinite;
+    transform: scale(1.2); /* Увеличиваем чтобы не было пустых краев */
 }
 
 @keyframes seamlessMove {
     0% {
-        background-position: 0% 0%;
+        transform: scale(1.2) translate(-10%, -10%);
+    }
+    25% {
+        transform: scale(1.2) translate(0%, 0%);
+    }
+    50% {
+        transform: scale(1.2) translate(10%, 10%);
+    }
+    75% {
+        transform: scale(1.2) translate(0%, 0%);
     }
     100% {
-        background-position: 100% 100%;
+        transform: scale(1.2) translate(-10%, -10%);
     }
 }
 .roulette-border {
