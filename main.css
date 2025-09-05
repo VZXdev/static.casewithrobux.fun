@@ -10,7 +10,18 @@ body {
         radial-gradient(circle at 50% 80%, rgba(123, 44, 191, 0.1) 0%, transparent 20%);
 }
 
+.fixed.inset-0.overflow-hidden.pointer-events-none .absolute {
+    animation: diagonalMove 20s linear infinite;
+}
 
+@keyframes diagonalMove {
+    0% {
+        transform: translate(-10%, -10%);
+    }
+    100% {
+        transform: translate(10%, 10%);
+    }
+}
 .roulette-border {
     position: relative;
     border-radius: 18px;
