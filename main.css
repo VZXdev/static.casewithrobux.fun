@@ -81,11 +81,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-#withdraw-info-modal:not(.hidden) .glass-effect {
-    transform: scale(1);
-}
-
-
 @media (max-width: 640px) {
     #withdraw-info-modal .glass-effect {
         margin: 10px;
